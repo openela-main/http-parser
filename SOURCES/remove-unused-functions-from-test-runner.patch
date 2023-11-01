@@ -1,0 +1,64 @@
+From d22c4c1e3ab9ffe5faaa08bacd993c814ca1c92e Mon Sep 17 00:00:00 2001
+From: Sergio Correia <scorreia@redhat.com>
+Date: Tue, 18 Feb 2020 09:11:05 -0300
+Subject: [PATCH] Remove unused functions from test runner.
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Upstream: 705e519bf56e5904c761a411b38a66e84bf7fc2d
+
+PR-URL: https://github.com/nodejs-private/http-parser-private/pull/1
+Reviewed-By: Сковорода Никита Андреевич <chalkerx@gmail.com>
+Reviewed-By: Colin Ihrig <cjihrig@gmail.com>
+Reviewed-By: Evan Lucas <evanlucas@me.com>
+Reviewed-By: Fedor Indutny <fedor.indutny@gmail.com>
+Reviewed-By: James M Snell <jasnell@gmail.com>
+Reviewed-By: Rod Vagg <rod@vagg.org>
+---
+ test.c | 14 --------------
+ 1 file changed, 14 deletions(-)
+
+diff --git a/test.c b/test.c
+index cb445ce..a1fa0d3 100644
+--- a/test.c
++++ b/test.c
+@@ -27,9 +27,7 @@
+ #include <stdarg.h>
+ 
+ #if defined(__APPLE__)
+-# undef strlcat
+ # undef strlncpy
+-# undef strlcpy
+ #endif  /* defined(__APPLE__) */
+ 
+ #undef TRUE
+@@ -1993,12 +1991,6 @@ strlncat(char *dst, size_t len, const char *src, size_t n)
+   return slen + dlen;
+ }
+ 
+-size_t
+-strlcat(char *dst, const char *src, size_t len)
+-{
+-  return strlncat(dst, len, src, (size_t) -1);
+-}
+-
+ size_t
+ strlncpy(char *dst, size_t len, const char *src, size_t n)
+ {
+@@ -2017,12 +2009,6 @@ strlncpy(char *dst, size_t len, const char *src, size_t n)
+   return slen;
+ }
+ 
+-size_t
+-strlcpy(char *dst, const char *src, size_t len)
+-{
+-  return strlncpy(dst, len, src, (size_t) -1);
+-}
+-
+ int
+ request_url_cb (http_parser *p, const char *buf, size_t len)
+ {
+-- 
+2.18.2
+
